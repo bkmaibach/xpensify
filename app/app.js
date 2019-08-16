@@ -17,6 +17,8 @@ import AppRouter from './routers/AppRouter';
 import FontFaceObserver from 'fontfaceobserver';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
+import configureStore from './store/configureStore';
+import getVisibleExpenses from './selectors/expenses';
 
 // Import root app
 import App from 'containers/App';
@@ -29,7 +31,12 @@ import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 // Import CSS reset and Global Styles
 import 'styles/theme.scss';
 
-import configureStore from './configureStore';
+import { addExpense } from './actions/expenses'
+import { setTextFilter } from './actions/filters'
+
+import { Provider } from 'react-redux'
+
+// import configureStore from './configureStore';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -42,13 +49,31 @@ openSansObserver.load().then(() => {
   document.body.classList.remove('fontLoaded');
 });
 
-// Create redux store with history
-const initialState = {};
-const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
+// Create redux store with history
+// const store = configureStore(initialState, history);
+
+const initialState = {};
+const store = configureStore();
+store.subscribe( () => {
+  const state = store.getState();
+  console.log(getVisibleExpenses(state.expenses, state.filters));
+});
+
+
+store.dispatch(addExpense({description: "Gas bill", createdAt: 100, amount: 2500}));
+store.dispatch(addExpense({description: "Water bill", createdAt: 200, amount: 7500}));
+store.dispatch(addExpense({description: "Rent", amount: 10000}));
+store.dispatch(setTextFilter(''));
+
+const jsx = (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
+);
 
 const render = () => {
-  ReactDOM.render(<AppRouter />, document.getElementById('app'));
+  ReactDOM.render(jsx, document.getElementById('app'));
 };
 
 if (module.hot) {
