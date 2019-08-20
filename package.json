@@ -17,9 +17,9 @@
     "start:prod": "cross-env NODE_ENV=production node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
     "pretest": "npm run test:clean",
-    "test": "cross-env NODE_ENV=test jest --coverage",
+    "test": "cross-env NODE_ENV=test jest --coverage --config=jest.config.js",
     "test:clean": "rimraf ./coverage",
-    "test:watch": "cross-env NODE_ENV=test jest --watchAll"
+    "test:watch": "cross-env NODE_ENV=test jest --watchAll --config=jest.config.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",

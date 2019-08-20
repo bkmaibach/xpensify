@@ -19,6 +19,7 @@ import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 import configureStore from './store/configureStore';
 import getVisibleExpenses from './selectors/expenses';
+import 'react-dates/lib/css/_datepicker.css';
 
 // Import root app
 import App from 'containers/App';

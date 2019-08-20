@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
 
 export default class ExpenseForm extends React.Component {
@@ -23,8 +22,10 @@ export default class ExpenseForm extends React.Component {
   };
 
   onNoteChange = (e) => {
-    // You can't create a one liner here because the callback runs after e is gone (The browser removes it for performance reasons)
-    // Use persist to kep it around. Creating a variable within the scope like the description callback above also works.
+    // You can't create a one liner here because the callback runs after e is gone
+    // (The browser removes it for performance reasons)
+    // Use persist to kep it around.
+    //Creating a variable within the scope like the description callback above also works.
     e.persist();
     this.setState(() => ({note: e.target.value}));
   };
@@ -50,7 +51,7 @@ export default class ExpenseForm extends React.Component {
     e.preventDefault();
 
     if (!this.state.description || !this.state.amount) {
-      this.setState(() => ({error: "Please provide a descriptioon and amount"}))
+      this.setState(() => ({error: "Please provide a description and amount"}))
     } else {
       this.setState(() => ({error: ""}))
       this.props.onSubmit({
