@@ -34,7 +34,3 @@ test('should handle onClickRemove for removing expense', () => {
   expect(history.push).toHaveBeenLastCalledWith('/');
   expect(removeExpense).toHaveBeenLastCalledWith({id: expense.id});
 });
-
-// Should render the EditExpensePage
-// Should handle editExpense (using spies)
-// Should handle removeExpense (using spies)

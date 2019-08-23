@@ -36,9 +36,6 @@ import { addExpense } from './actions/expenses'
 import { setTextFilter } from './actions/filters'
 
 import { Provider } from 'react-redux'
-
-console.log("TESTICLE");
-
 // import configureStore from './configureStore';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
@@ -64,10 +61,10 @@ store.subscribe( () => {
 });
 
 
-store.dispatch(addExpense({description: "Gas bill", createdAt: 100, amount: 2500}));
-store.dispatch(addExpense({description: "Water bill", createdAt: 200, amount: 7500}));
-store.dispatch(addExpense({description: "Rent", amount: 10000}));
-store.dispatch(setTextFilter(''));
+// store.dispatch(addExpense({description: "Gas bill", createdAt: 100, amount: 2500}));
+// store.dispatch(addExpense({description: "Water bill", createdAt: 200, amount: 7500}));
+// store.dispatch(addExpense({description: "Rent", amount: 10000}));
+// store.dispatch(setTextFilter(''));
 
 const jsx = (
   <Provider store={store}>
