@@ -46,8 +46,18 @@ module.exports = (options) => ({
               hmr: process.env.NODE_ENV === 'development',
             },
           },
-          'css-loader',
-          'sass-loader'
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
         ],
       },
       {
