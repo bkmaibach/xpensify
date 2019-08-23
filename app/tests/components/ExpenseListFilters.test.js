@@ -68,8 +68,4 @@ test('should handle a focus change', () => {
   expect(wrapper.state('calendarFocused')).toBe(calendarFocused);
 });
 
-
-
-
-
 // Should render the ExpenseListFilters

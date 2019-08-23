@@ -7,10 +7,6 @@ import { DateRangePicker } from 'react-dates'
 
 export class ExpenseListFilters extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     calendarFocused: null
   };

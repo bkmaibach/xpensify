@@ -37,6 +37,8 @@ import { setTextFilter } from './actions/filters'
 
 import { Provider } from 'react-redux'
 
+console.log("TESTICLE");
+
 // import configureStore from './configureStore';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
