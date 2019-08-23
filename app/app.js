@@ -24,6 +24,8 @@ import 'react-dates/lib/css/_datepicker.css';
 // Import root app
 import App from 'containers/App';
 
+import './firebase/firebase';
+
 // Load the favicon
 /* eslint-disable import/no-webpack-loader-syntax */
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
@@ -36,7 +38,6 @@ import { addExpense } from './actions/expenses'
 import { setTextFilter } from './actions/filters'
 
 import { Provider } from 'react-redux'
-// import configureStore from './configureStore';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -55,10 +56,10 @@ const MOUNT_NODE = document.getElementById('app');
 
 const initialState = {};
 const store = configureStore();
-store.subscribe( () => {
-  const state = store.getState();
-  console.log(getVisibleExpenses(state.expenses, state.filters));
-});
+// store.subscribe( () => {
+//   const state = store.getState();
+//   console.log(getVisibleExpenses(state.expenses, state.filters));
+// });
 
 
 // store.dispatch(addExpense({description: "Gas bill", createdAt: 100, amount: 2500}));
