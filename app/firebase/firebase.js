@@ -75,5 +75,5 @@ const testFirebase = async () => {
   }
 }
 
-testFirebase();
+// testFirebase();
 
