@@ -4,6 +4,8 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devMode = process.env.NODE_ENV !== 'production';
 
 process.noDeprecation = true;
 
@@ -28,6 +30,7 @@ module.exports = (options) => ({
           options: options.babelQuery
         }
       },
+      
       {
         // Preprocess our own .scss files
         test: /\.scss$/,
@@ -35,10 +38,17 @@ module.exports = (options) => ({
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
-        // Preprocess 3rd party .css files located in node_modules
         test: /\.css$/,
-        include: /node_modules/,
-        use: ['style-loader', 'css-loader']
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development',
+            },
+          },
+          'css-loader',
+          'sass-loader'
+        ],
       },
       {
         test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
@@ -76,6 +86,14 @@ module.exports = (options) => ({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
+    }),
+
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // all options are optional
+      filename: devMode ? '[name].css' : '[name].[hash].css',
+      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+      ignoreOrder: false, // Enable to remove warnings about conflicting order
     })
   ]),
   resolve: {
